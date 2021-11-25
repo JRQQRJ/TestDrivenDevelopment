@@ -1,3 +1,5 @@
+package pages;
+
 import com.automationbytarun.components.BaseActions;
 import org.openqa.selenium.WebDriver;
 

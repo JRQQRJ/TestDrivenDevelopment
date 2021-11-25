@@ -1,3 +1,5 @@
+package stepDefinitions;
+
 import com.automationbytarun.components.BaseActions;
 import com.automationbytarun.components.TestActions;
 import com.automationbytarun.helpers.TestAsserts;
@@ -9,6 +11,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import pages.LoginPage;
+import pages.WelcomePage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,19 +45,32 @@ public class LoginStepDefinition extends TestActions  {
 //        Thread.sleep(3000);
 //    }
 
+    @When("I enter {string} and {string} and submit")
+    public void iEnterAndAndSubmit(String arg0, String arg1) throws InterruptedException {
+        loginPage.enterUserName(arg0);
+        System.out.println(arg0);
+        loginPage.enterPassword(arg1);
+        System.out.println(arg1);
+        loginPage.clickLogin();
+        Thread.sleep(3000);
+    }
+
     @Then("I should see the Welcome Page")
     public void iShouldSeeTheWelcomePage() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         String welcomMsg = welcomePage.getWelcomeMessage();
         System.out.println(welcomMsg);
         Thread.sleep(3000);
-        TestAsserts.checkIfValuesAreEqual(welcomMsg,welcomMsg);
+//        TestAsserts
+//
+//        TestAsserts.checkIfValuesAreEqual(welcomMsg,welcomMsg);
+//        TestAsserts;
 
     }
 
 
-    @When("I enter {string} and {string} and submit")
-    public void iEnterAndAndSubmit(String arg0, String arg1) throws InterruptedException {
+    @When("I enter {string} and {string} and try submit")
+    public void iEnterAndAndTrySubmit(String arg0, String arg1) throws InterruptedException {
         System.out.println(arg0);
         System.out.println(arg1);
                 loginPage.enterUserName(arg0)
@@ -60,6 +78,14 @@ public class LoginStepDefinition extends TestActions  {
                 .clickLogin();
         Thread.sleep(3000);
     }
-}
+
+    @Then("I should not see the Welcome Page")
+    public void iShouldNotSeeTheWelcomePage() {
+        Assert.assertTrue(driver.getCurrentUrl().contains("validate"));
+    }
+
+
+    }
+
 
 
