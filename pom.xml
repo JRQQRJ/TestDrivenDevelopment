@@ -83,7 +83,7 @@
                 </executions>
                 <configuration>
                     <sourceJsonReportDirectory>${project.build.directory}/cucumber-report</sourceJsonReportDirectory>
-                    <generatedHtmlReportDirectory>${project.build.directory}/generated-report</generatedHtmlReportDirectory>
+                    <generatedHtmlReportDirectory>${project.build.directory}/cucumber-reports</generatedHtmlReportDirectory>
                 </configuration>
             </plugin>
             <plugin>
@@ -92,7 +92,7 @@
                 <version>3.0.0-M1</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/Runner.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/testng_cucumberRunner.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
