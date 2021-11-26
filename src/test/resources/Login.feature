@@ -11,6 +11,7 @@ Feature: Validating login functionality
       | username | password |
       | Admin    | admin123 |
 
+
   @smoke
   Scenario Outline: As a invalid user, I should not be allowed to login to the application
     Given I am at the login page

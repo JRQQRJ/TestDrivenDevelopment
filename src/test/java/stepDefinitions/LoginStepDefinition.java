@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginStepDefinition extends TestActions  {
 
-    WebDriver driver;
+    static WebDriver driver;
     DriverManager driverManager;
     public BaseActions pageActions;
     LoginPage loginPage;
@@ -35,6 +35,7 @@ public class LoginStepDefinition extends TestActions  {
         pageActions = new BaseActions(driver);
         loginPage=new LoginPage(driver);
         pageActions.launchUrl(PropertiesLoader.appUrl);
+
     }
 
 //    @When("I login to the application")
@@ -53,20 +54,31 @@ public class LoginStepDefinition extends TestActions  {
         System.out.println(arg1);
         loginPage.clickLogin();
         Thread.sleep(3000);
+        driver = driverManager.getDriver();
+        System.out.println(driver.getCurrentUrl());
+
+
     }
 
-    @Then("I should see the Welcome Page")
-    public void iShouldSeeTheWelcomePage() throws InterruptedException {
-        welcomePage = new WelcomePage(driver);
-        String welcomMsg = welcomePage.getWelcomeMessage();
-        System.out.println(welcomMsg);
-        Thread.sleep(3000);
-//        TestAsserts
+    public WebDriver rD(){
+
+        System.out.println(driver.getCurrentUrl());
+        return driver;
+    }
+
+
+//    @Then("I should see the Welcome Page")
+//    public void iShouldSeeTheWelcomePage() throws InterruptedException {
+//        welcomePage = new WelcomePage(driver);
+//        String welcomMsg = welcomePage.getWelcomeMessage();
+//        System.out.println(welcomMsg);
+//        Thread.sleep(3000);
+////        TestAsserts
+////
+////        TestAsserts.checkIfValuesAreEqual(welcomMsg,welcomMsg);
+////        TestAsserts;
 //
-//        TestAsserts.checkIfValuesAreEqual(welcomMsg,welcomMsg);
-//        TestAsserts;
-
-    }
+//    }
 
 
     @When("I enter {string} and {string} and try submit")
